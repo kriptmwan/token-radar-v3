@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — which pre-token protocol is worth farming next</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="pulse" aria-hidden="true"></span><h1>TOKEN RADAR</h1></div>
+  <p class="tag">Every pre-token protocol in the snapshot, ranked by expected value — fitted from the protocols whose tokens already trade, with the farm plan and the cost for each one.</p>
+  <div class="strip" id="integrity"></div>
+</header>
+
+<section class="kpis" id="kpis"></section>
+
+<section class="panel">
+  <h2>Top 5 by expected value</h2>
+  <div class="hero" id="hero"></div>
+</section>
+
+<section class="panel">
+  <h2>Where the value sits <span class="hint">log TVL vs expected value · green = FARM · amber = THIN · grey = SKIP · ✕ = token already trades</span></h2>
+  <svg id="scatter" viewBox="0 0 720 340" role="img" aria-label="Scatter of TVL against expected value"></svg>
+</section>
+
+<section class="panel" id="board-panel">
+  <h2>The board <span class="hint" id="board-count"></span></h2>
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search name or slug…" aria-label="Search">
+    <select id="cat" aria-label="Category"><option value="">All categories</option></select>
+    <div class="verdicts" role="group" aria-label="Verdict filter">
+      <button data-v="" class="on">All</button><button data-v="FARM">FARM</button><button data-v="THIN">THIN</button><button data-v="SKIP">SKIP</button>
+    </div>
+    <label class="wl"><input id="wl" type="checkbox"> Watchlist only</label>
+    <label class="wl"><input id="live" type="checkbox" checked> Show live-token anchors</label>
+  </div>
+  <div class="tablewrap"><table id="board">
+    <thead><tr>
+      <th data-k="rank">#</th><th data-k="name">Protocol</th><th data-k="category">Category</th>
+      <th data-k="tvl_usd">TVL</th><th data-k="change_7d">7d</th><th data-k="age_years">Age</th>
+      <th data-k="fitted_usd">Fitted value</th><th data-k="odds">Token odds</th>
+      <th data-k="ev_usd">Expected value</th><th data-k="cost_usd">Farm cost</th><th data-k="verdict">Verdict</th>
+    </tr></thead>
+    <tbody id="rows"></tbody>
+  </table></div>
+  <p class="note">Implied value is this radar's own claim, never a promise: a protocol records no token on DefiLlama, which is not proof it has none. Click any row for the full breakdown and farm plan.</p>
+</section>
+
+<section class="panel">
+  <h2>Live-token anchors — the comps the model was fitted on</h2>
+  <p class="hint">The 12 largest traded protocols: what the market actually values them at, against what the model would have fitted. The gap is the model's honest error.</p>
+  <table id="anchors"><thead><tr><th>Protocol</th><th>TVL</th><th>Actual mcap</th><th>Fitted</th><th>Miss</th></tr></thead><tbody></tbody></table>
+</section>
+
+<section class="panel">
+  <h2>How the number is made</h2>
+  <div id="explainer"></div>
+</section>
+
+<footer>
+  <p>Token Radar v3 · snapshot <span id="foot-date"></span> · 758 protocols from DefiLlama's public record · method and limits in “How the number is made” · implied values are the radar's own claims.</p>
+</footer>
+
+<aside id="drawer" aria-hidden="true"><button id="close" aria-label="Close">✕</button><div id="detail"></div></aside>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
